@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "google-taskmaster-2",
+      "name": "Taskmaster-2",
+      "url": "https://github.com/google-research-datasets/Taskmaster/tree/master/TM-2-2020",
+      "license": "CC-BY-4.0",
+      "copyright": "Google LLC; Bill Byrne, Karthik Krishnamoorthi, Saravanan Ganesh, Amit Dubey, Kyu-Young Kim, Andy Cedilnik",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "collection": "Human crowdworker spoken roleplay, transcribed; agent replies written by trained operators and played via TTS. Not genuine unprompted business support.",
+      "adaptations": "Brazilian Portuguese, petshop domain transfer, reworded assistant/customer turns; not direct transcript translations.",
+      "subset_blobs": {
+        "food": "1637d76fc83ad7bd20814f8c11b9462c77af1cfc",
+        "restaurant": "1a82c985f43d0e2390b1049e279352c6e523ce4c",
+        "hotels": "5d68cd83f03a647b16b6c26dc298194b1532b99c"
+      }
+    }
+  ],
+  "other_candidates": [
+    {
+      "name": "TalkEx PT-BR",
+      "url": "https://huggingface.co/datasets/paulohenriquevn/talkex-augmented-pt-br",
+      "reason": "synthetic; lower priority for spontaneous conversational patterns",
+      "imported": false
+    },
+    {
+      "name": "MultiWOZ 2.2",
+      "url": "https://github.com/budzianowski/multiwoz",
+      "reason": "human-human written roleplays; evaluate as second source",
+      "imported": false
+    }
+  ],
+  "stats": {
+    "examples": 26,
+    "strategies": 8,
+    "subsets": {
+      "food": 12,
+      "restaurant": 8,
+      "hotels": 6
+    }
+  }
+}
