@@ -1,0 +1,13 @@
+{
+  // Copy these bindings into the YuiSync Worker config after provision.
+  // NEVER replace an existing D1 configuration without checking migrations.
+  "d1_databases": [
+    { "binding": "CONVERSATION_LIBRARY_DB", "database_name": "yuisync-conversation-library", "database_id": "REPLACE_WITH_D1_ID" }
+  ],
+  "r2_buckets": [
+    { "binding": "CONVERSATION_LIBRARY_R2", "bucket_name": "yuisync-conversation-corpus" }
+  ],
+  "vectorize": [
+    { "binding": "CONVERSATION_LIBRARY_VECTORS", "index_name": "yuisync-conversation-strategies" }
+  ]
+}

@@ -1,0 +1,30 @@
+name: Validate conversation library
+on:
+  push:
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate JSONL and provenance
+        run: python scripts/validate.py
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+      - name: Generate D1 import and parse schema
+        run: |
+          python scripts/export_d1.py > /tmp/seed.sql
+          python - <<'PY'
+          import sqlite3
+          from pathlib import Path
+          db=sqlite3.connect(':memory:')
+          db.executescript(Path('cloudflare/migrations/0001_library.sql').read_text())
+          db.executescript(Path('/tmp/seed.sql').read_text())
+          assert db.execute('select count(*) from conversation_examples').fetchone()[0] == 26
+          assert db.execute('select count(*) from conversation_strategies').fetchone()[0] == 8
+          assert db.execute("select count(*) from conversation_examples where quality_status = 'approved'").fetchone()[0] == 0
+          print('D1 schema + pending seed: OK')
+          PY
